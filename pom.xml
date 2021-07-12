@@ -25,4 +25,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <modules>
+        <module>app01</module>
+    </modules>
+
 </project>
