@@ -1,4 +1,5 @@
-/target/
+# Ignore the target directory and subdirectories named as target.
+target/
 
 ### IntelliJ IDEA ###
 .idea
