@@ -12,7 +12,6 @@ import java.util.Collection;
  */
 public class RosterHelper {
     public void init(Collection<Person> roster) {
-        roster = new ArrayList<>();
         roster.add(new Person("liuqifeng", Person.Sex.MALE, LocalDate.of(1991, Month.JANUARY, 19)));
         roster.add(new Person("liangchunzhao", Person.Sex.MALE, LocalDate.of(1997, Month.FEBRUARY, 2)));
         roster.add(new Person("simaxueke", Person.Sex.FEMALE, LocalDate.of(1995, Month.SEPTEMBER, 14)));
