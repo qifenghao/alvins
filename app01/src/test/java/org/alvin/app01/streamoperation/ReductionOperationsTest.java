@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * A difference between the accumulator in the reduce method and the accumulator in the collect method is having return value or not.
+ * A difference between the accumulator in the reduce method and the accumulator in the collect method is having a return value or not.
  * @author Alvin Liu
  * @date 2021.7.21
  */
@@ -73,11 +73,30 @@ public class ReductionOperationsTest {
 
         List<String> namesOfMembersCollect2 = roster.stream().map(Person::getName).collect(Collectors.toList());
         System.out.println("namesOfMembersCollect2: " + namesOfMembersCollect2);
+
+        List<String> namesOfMembersCollect3 = roster.stream().collect(Collectors.mapping(Person::getName, Collectors.toList()));
+        System.out.println("namesOfMembersCollect3: " + namesOfMembersCollect3);
     }
 
     @Test
     public void groupMembersByGender() {
         Map<Person.Sex, List<Person>> membersByGender = roster.stream().collect(Collectors.groupingBy(Person::getGender));
         System.out.println("membersByGender: " + membersByGender);
+
+        Map<Person.Sex, List<String>> namesByGender = roster.stream().collect(Collectors.groupingBy(Person::getGender, Collectors.mapping(Person::getName, Collectors.toList())));
+        System.out.println("namesByGender: " + namesByGender);
+    }
+
+    @Test
+    public void totalAgeByGender() {
+        // Map<Person.Sex, Integer> totalAgeByGender = roster.stream().collect(Collectors.groupingBy(Person::getGender, Collectors.mapping(Person::getAge, Collectors.reducing(0, Integer::sum))));
+        Map<Person.Sex, Integer> totalAgeByGender = roster.stream().collect(Collectors.groupingBy(Person::getGender, Collectors.reducing(0, Person::getAge, Integer::sum)));
+        System.out.println("totalAgeByGender: " + totalAgeByGender);
+    }
+
+    @Test
+    public void averageAgeByGender() {
+        Map<Person.Sex, Double> averageAgeByGender = roster.stream().collect(Collectors.groupingBy(Person::getGender, Collectors.averagingDouble(Person::getAge)));
+        System.out.println("averageAgeByGender: " + averageAgeByGender);
     }
 }
