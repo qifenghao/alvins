@@ -27,7 +27,6 @@
 
     <modules>
         <module>app01</module>
-        <module>app02-mybatis</module>
     </modules>
 
 </project>
