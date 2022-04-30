@@ -11,6 +11,10 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
+    <typeAliases>
+        <typeAlias type="org.alvin.app02mybatis.pojo.Post" alias="Post"/>
+    </typeAliases>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

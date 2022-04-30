@@ -1,6 +1,7 @@
 package org.alvin.app02mybatis.mapper;
 
 import org.alvin.app02mybatis.pojo.Blog;
+import org.alvin.app02mybatis.pojo.DetailedBlog;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -37,6 +38,14 @@ public class BlogMapperTest {
             int insertRows = sqlSession.insert("org.alvin.app02mybatis.mapper.BlogMapper.insertBlog", blog);
             System.out.println("The number of rows affected by the insert: " + insertRows);
             sqlSession.commit(); // commit transaction manually or the insert would not be persisted.
+        }
+    }
+
+    @Test
+    public void testSelectBlogDetails() {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            DetailedBlog detailedBlog = sqlSession.selectOne("selectBlogDetails", 1);
+            System.out.println(detailedBlog);
         }
     }
 }
